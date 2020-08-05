@@ -1,4 +1,4 @@
-#include "printf.h"
+#include "integral.h"
 
 static void			set_power(t_power *tmp, int exp, int base)
 {

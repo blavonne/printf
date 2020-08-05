@@ -67,3 +67,23 @@ int				check_info(t_format *info, va_list *arg)
 	check_length_and_specifier(info);
 	return (0);
 }
+
+char			*check_inf_nan(t_format *info)
+{
+	char		*res;
+
+	res = NULL;
+	if (info->r.exponent == INF && get_mant_len(info->r.mantissa) == 1)
+	{
+		if (!(res = ft_strnew(3)))
+			put_errmsg_and_exit('m');
+		res = ft_strcpy(res, "inf");
+	}
+	if (info->r.exponent == INF && get_mant_len(info->r.mantissa) > 1)
+	{
+		if (!(res = ft_strnew(3)))
+			put_errmsg_and_exit('m');
+		res = ft_strcpy(res, "nan");
+	}
+	return (res);
+}

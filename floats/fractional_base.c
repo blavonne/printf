@@ -56,11 +56,12 @@ t_fractional		get_fractional(char *mantissa, int exp)
 
 	i = (exp < 0) ? ft_abs(exp) : 1;
 	snake = initialize_frac(&snake);
-	if (!get_length(mantissa))
+	if (!get_mant_len(mantissa))
 		return (snake);
 	mantissa = (exp < 0) ? &mantissa[0] : &mantissa[exp + 1];
-	len = (exp < 0) ? ft_abs(exp) + get_length(mantissa) : get_length(mantissa);
-	while (len)
+	len = (exp < 0) ? ft_abs(exp) + get_mant_len(mantissa) :\
+	get_mant_len(mantissa);
+	while (len--)
 	{
 		if (*mantissa++ == '1')
 		{
@@ -69,7 +70,6 @@ t_fractional		get_fractional(char *mantissa, int exp)
 			snake = addition_frac(&snake, &tmp);
 		}
 		i++;
-		len--;
 	}
 	snake.length = set_len_frac(&snake);
 	return (snake);

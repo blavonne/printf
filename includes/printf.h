@@ -179,5 +179,7 @@ int							pointer(t_format *info, va_list *arg);
 int							floats(t_format *info, va_list *arg);
 t_float						initialize_float(long double arg);
 char						*get_arg_f(t_format *info);
-int							get_length(char *str);
+char						*check_inf_nan(t_format *info);
+int							get_mant_len(char *mantissa);
+
 #endif

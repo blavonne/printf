@@ -1,4 +1,4 @@
-#include "printf.h"
+#include "integral.h"
 
 typedef union			u_xray
 {

@@ -54,3 +54,30 @@ int					set_len_integral(t_integral *elephant)
 	}
 	return (len);
 }
+
+t_integral			get_integral(int exp, char *mantissa)
+{
+	t_integral	result;
+	t_integral	temp;
+	int			i;
+
+	i = 0;
+	initialize_integral(&temp);
+	initialize_integral(&result);
+	if (exp >= 0)
+	{
+		temp = create_integral(2, exp - i);
+		exp = get_mant_len(mantissa);
+		while (i < exp)
+		{
+			if (mantissa[i] == '1')
+				result = addition(&result, &temp);
+			temp = division_by_nbr(&temp, 2);
+			i++;
+		}
+		if (mantissa[i] == '1')
+			result.bigint[0]++;
+	}
+	result.length = set_len_integral(&result);
+	return (result);
+}

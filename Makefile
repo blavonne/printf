@@ -72,7 +72,7 @@ fclean: clean
 re: fclean all
 
 exe: $(OS)
-	gcc -c main.c -I $(INCLUDES) $(FLAGS)
+	gcc -c main.c -I $(INCLUDES)
 	gcc $(OS) main.o -o $(NAME_E) -I $(INCLUDES)
 eclean: clean
 	rm -rf main.o
