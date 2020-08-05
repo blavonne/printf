@@ -1,0 +1,81 @@
+NAME = libftprintf.a
+NAME_E = printf
+FLAGS = -Wall -Werror -Wextra
+INCLUDES = ./includes/
+SRCSDIR = ./srcs/
+LIBFTDIR = ./libft/
+
+SRC =	$(LIBFTDIR)ft_abs.c\
+		$(LIBFTDIR)ft_bzero.c\
+		$(LIBFTDIR)ft_isdigit.c\
+		$(LIBFTDIR)ft_itoa_iu.c\
+		$(LIBFTDIR)ft_itoa_lu.c\
+		$(LIBFTDIR)ft_itoa_llu.c\
+		$(LIBFTDIR)ft_memset.c\
+		$(LIBFTDIR)ft_putchar.c\
+		$(LIBFTDIR)ft_putchar_fd.c\
+		$(LIBFTDIR)ft_putstr.c\
+		$(LIBFTDIR)ft_putstr_fd.c\
+		$(LIBFTDIR)ft_str_tolower.c\
+		$(LIBFTDIR)ft_str_toupper.c\
+		$(LIBFTDIR)ft_strchr.c\
+		$(LIBFTDIR)ft_strlen.c\
+		$(LIBFTDIR)ft_strnew.c\
+		$(LIBFTDIR)ft_tolower.c\
+		$(LIBFTDIR)ft_toupper.c\
+		$(SRCSDIR)chars_conversion.c\
+		$(SRCSDIR)chars_printing.c\
+		$(SRCSDIR)check_info.c\
+		$(SRCSDIR)errors.c\
+		$(SRCSDIR)floats_conversion.c\
+		$(SRCSDIR)floats_flags_cases.c\
+		$(SRCSDIR)integer_flags_cases.c\
+		$(SRCSDIR)integer_conversion.c\
+		$(SRCSDIR)integer_printing.c\
+		$(SRCSDIR)integer_sign_prefix.c\
+		$(SRCSDIR)nbr_len.c\
+		$(SRCSDIR)nbr_len_iu.c\
+		$(SRCSDIR)nbr_len_lu.c\
+		$(SRCSDIR)nbr_len_llu.c\
+		$(SRCSDIR)parser.c\
+		$(SRCSDIR)parser_flags.c\
+		$(SRCSDIR)percent_case.c\
+		$(SRCSDIR)printf.c\
+		$(SRCSDIR)processor.c\
+		$(SRCSDIR)pointer_conversion.c\
+
+OS = $(SRC:%.c=%.o)
+
+all: $(NAME)
+
+$(NAME): $(OS)
+	ar rcs $(NAME) $(OS)
+%.o: %.c
+	gcc -c $< -o $@ $(FLAGS)
+clean:
+	rm -rf $(OS)
+fclean: clean
+	rm -rf $(NAME)
+re: fclean all
+
+exe: $(OS)
+	gcc -c main.c -I $(INCLUDES)
+	gcc $(OS) main.o -o $(NAME_E) -I $(INCLUDES)
+eclean: clean
+	rm -rf main.o
+efclean: eclean
+	rm -rf $(NAME_E)
+ere: efclean exe
+
+cp: rm
+	cp -rf ./libft ./git
+	cp -rf ./srcs ./git
+	cp -rf ./includes ./git
+	cp Makefile ./git
+rm:
+	rm -rf ./git/includes/*
+	rm -rf ./git/srcs/*
+	rm -rf ./git/libft/*
+pft:
+	bash ./pft/test
+.PHONY: all clean fclean re val cp exe
