@@ -5,13 +5,13 @@ char			*check_inf_nan(t_format *info)
 	char		*res;
 
 	res = NULL;
-	if (info->r.exponent == INF && get_power(info->r.mantissa) == 1)
+	if (info->r.exponent == INF && get_length(info->r.mantissa) == 1)
 	{
 		if (!(res = ft_strnew(3)))
 			put_errmsg_and_exit('m');
 		res = ft_strcpy(res, "inf");
 	}
-	if (info->r.exponent == INF && get_power(info->r.mantissa) > 1)
+	if (info->r.exponent == INF && get_length(info->r.mantissa) > 1)
 	{
 		if (!(res = ft_strnew(3)))
 			put_errmsg_and_exit('m');
@@ -59,7 +59,7 @@ char			*fractional_to_str(t_fractional *snake, t_format *info)
 }
 
 
-void			ft_round_f(t_bigint *z, t_fractional *frac, t_format *info)
+void			ft_round_f(t_integral *z, t_fractional *frac, t_format *info)
 {
 	int		i;
 
@@ -75,7 +75,7 @@ void			ft_round_f(t_bigint *z, t_fractional *frac, t_format *info)
 		{
 			frac->bigint[0] >= 10 ? frac->bigint[0] -= 10 : 0;
 			z->bigint[0]++;
-			normalize(z);
+			normalize_integral(z);
 		}
 		while (i < frac->length)
 			frac->bigint[i++] = 0;
@@ -83,13 +83,13 @@ void			ft_round_f(t_bigint *z, t_fractional *frac, t_format *info)
 	}
 }
 
-char			*integral_to_str(t_bigint *one)
+char			*integral_to_str(t_integral *one)
 {
 	int			i;
 	char		*buf;
 	char		*tmp;
 
-	one->length = set_len_big(one);
+	one->length = set_len_integral(one);
 	i = one->length - 1;
 	if (!one->length)
 	{
@@ -115,7 +115,7 @@ char			*integral_to_str(t_bigint *one)
 
 char			*get_arg_f(t_format *info)
 {
-	t_bigint		integral;
+	t_integral		integral;
 	t_fractional	fractional;
 	char			*z;
 	char			*r;

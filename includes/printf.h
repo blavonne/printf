@@ -20,8 +20,8 @@
 # include <stdlib.h>
 # include <stdio.h> //del
 # include <unistd.h>
-# include "elephant.h"
-# include "snake.h"
+# include "fractional.h"
+# include "integral.h"
 
 /*
 ** Binary flags -+ 0#
@@ -110,9 +110,9 @@ size_t						ft_strlen(const char *s);
 char						*ft_strchr(const char *s, int c);
 int							ft_isdigit(int c);
 char						*ft_strcat(char *s1, const char *s2);
-char						*ft_strcpy(char *dst, const char *src);
 char						*ft_strjoin(char const *s1, char const *s2);
 double						ft_pow(double basis, int exponent);
+char						*ft_strcpy(char *dst, const char *src);
 
 /*
 ** itoa and symbols count functions
@@ -179,5 +179,5 @@ int							pointer(t_format *info, va_list *arg);
 int							floats(t_format *info, va_list *arg);
 t_float						initialize_float(long double arg);
 char						*get_arg_f(t_format *info);
-int							get_power(char *str);
+int							get_length(char *str);
 #endif
