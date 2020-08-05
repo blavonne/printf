@@ -28,6 +28,7 @@ int		floats(t_format *info, va_list *arg)
 	info->r = initialize_float(ld);
 	info->precision = info->precision < 0 ? 6 : info->precision;
 	res = get_arg_f(info);
+	res = process_flags_f(info, res);
 	if (res)
 	{
 		count = ft_strlen(res);

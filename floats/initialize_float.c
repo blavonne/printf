@@ -70,7 +70,7 @@ typedef union			u_xray
 		unsigned char	b62 : 1;
 		unsigned char	b63 : 1;
 		unsigned int	exponent : 15;
-		unsigned char	b79 : 1;
+		unsigned int	b79 : 1;
 	} 					parts;
 }						t_xray;
 
@@ -162,7 +162,7 @@ t_float					initialize_float(long double arg)
 	t_float		res;
 
 	tmp.long_double = arg;
-	res.sign = (char)(tmp.parts.b79 + 48);
+	res.sign = (char)tmp.parts.b79;
 	res.exponent = (int)(tmp.parts.exponent - (unsigned)16383);
 	ft_bzero(res.mantissa, 65);
 	set_mantissa(&tmp, &res);

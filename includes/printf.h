@@ -181,5 +181,6 @@ t_float						initialize_float(long double arg);
 char						*get_arg_f(t_format *info);
 char						*check_inf_nan(t_format *info);
 int							get_mant_len(char *mantissa);
+char						*process_flags_f(t_format *info, char *arg);
 
 #endif

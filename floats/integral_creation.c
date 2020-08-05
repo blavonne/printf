@@ -15,7 +15,7 @@ static void			set_power(t_power *tmp, int exp, int base)
 		tmp->full = exp / overflow_power;
 }
 
-static t_integral		set_full()
+static t_integral	set_full()
 {
 	t_integral	full_62;
 

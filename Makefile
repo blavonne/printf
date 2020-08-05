@@ -10,10 +10,12 @@ SRC =	$(FLTDIR)big_math_b2b.c\
 		$(FLTDIR)big_math_b2n.c\
 		$(FLTDIR)frac_math.c\
 		$(FLTDIR)fractional_base.c\
+		$(FLTDIR)fractional_to_str.c\
+		$(FLTDIR)get_mant_len.c\
 		$(FLTDIR)initialize_float.c\
 		$(FLTDIR)integral_base.c\
 		$(FLTDIR)integral_creation.c\
-		$(FLTDIR)part1.c\
+		$(FLTDIR)integral_to_str.c\
 		$(LIBFTDIR)ft_abs.c\
 		$(LIBFTDIR)ft_bzero.c\
 		$(LIBFTDIR)ft_isdigit.c\
@@ -42,6 +44,7 @@ SRC =	$(FLTDIR)big_math_b2b.c\
 		$(SRCSDIR)errors.c\
 		$(SRCSDIR)float_conversion.c\
 		$(SRCSDIR)float_flags_cases.c\
+		$(SRCSDIR)float_get_arg.c\
 		$(SRCSDIR)integer_flags_cases.c\
 		$(SRCSDIR)integer_conversion.c\
 		$(SRCSDIR)integer_printing.c\

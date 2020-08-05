@@ -61,7 +61,8 @@ int				check_info(t_format *info, va_list *arg)
 	}
 	if (info->precision == READ_ARG && (info->precision = va_arg(*arg, int)))
 		info->precision = info->precision < 0 ? -1 : info->precision;
-	if (info->precision != -1 && info->flags & FLG_ZERO)
+	if (info->precision != -1 && info->flags & FLG_ZERO &&\
+	!(ft_strchr("fF", info->specifier)))
 		info->flags = info->flags & (unsigned char)(~FLG_ZERO);
 	check_flags_and_specifier(info);
 	check_length_and_specifier(info);

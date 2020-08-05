@@ -23,7 +23,17 @@ static char			*add_zeros(char *s, int count)
 	return (res);
 }
 
-char			*integral_to_str(t_integral *one) //25 строк
+static char		*zero_integral()
+{
+	char	*buf;
+
+	if (!(buf = ft_strnew(1)))
+		put_errmsg_and_exit('m');
+	buf[0] = '0';
+	return (buf);
+}
+
+char			*integral_to_str(t_integral *one)
 {
 	int			i;
 	char		*buf;
@@ -31,13 +41,8 @@ char			*integral_to_str(t_integral *one) //25 строк
 
 	one->length = set_len_integral(one);
 	i = one->length - 1;
-	if (!one->length)
-	{
-		if (!(buf = ft_strnew(1)))
-			put_errmsg_and_exit('m');
-		buf[0] = '0';
+	if (!one->length && (buf = zero_integral()))
 		return (buf);
-	}
 	if (!(buf = ft_strnew(one->length * 9)))
 		put_errmsg_and_exit('m');
 	ft_bzero(buf, one->length * 9);

@@ -1,46 +1,83 @@
 #include "printf.h"
 
-void			ft_round_f(t_integral *z, t_fractional *frac, t_format *info)
+static char		*flg_others_case_f(t_format *info, char *arg, char *res)
 {
 	int		i;
+	int		j;
+	char	sign;
 
-	i = info->precision;
-	if (info->precision < frac->length && frac->bigint[info->precision] >= 5)
-	{
-		if (info->precision)
-		{
-			frac->bigint[info->precision - 1]++;
-			normalize_frac(frac);
-		}
-		if (frac->bigint[0] >= 10 || !info->precision)
-		{
-			frac->bigint[0] >= 10 ? frac->bigint[0] -= 10 : 0;
-			z->bigint[0]++;
-			normalize_integral(z);
-		}
-		while (i < frac->length)
-			frac->bigint[i++] = 0;
-		frac->length = set_len_frac(frac);
-	}
+	i = 0;
+	j = 0;
+	info->flags & FLG_PLUS ? sign = '+' : 0;
+	info->flags & FLG_SPACE ? sign = ' ' : 0;
+	info->r.sign == 1 ? sign = '-' : 0;
+	j = sign ? 1 : 0;
+	while (info->width != -1 && j + (int)ft_strlen(arg) < info->width--)
+		res[i++] = ' ';
+	sign && res ? res[ft_strlen(res)] = sign : 0;
+	res = ft_strcat(res, arg);
+	return (res);
 }
 
-char			*get_arg_f(t_format *info)
+static char		*flg_zero_case_f(t_format *info, char *arg, char *res)
 {
-	t_integral		integral;
-	t_fractional	fractional;
-	char			*z;
-	char			*r;
-	char			*res;
+	int		i;
+	int		j;
+	char	sign;
 
-	if ((res = check_inf_nan(info)))
-		return (res);
-	integral = get_integral(info->r.exponent, info->r.mantissa);
-	fractional = get_fractional(info->r.mantissa, info->r.exponent);
-	ft_round_f(&integral, &fractional, info);
-	z = integral_to_str(&integral);
-	r = frac_to_str(&fractional, info->precision, info->flags);
-	res = r ? ft_strjoin(z, r) : ft_strjoin(z, "");
-	free(z);
-	free(r);
+	i = 0;
+	j = 0;
+	info->flags & FLG_PLUS ? sign = '+' : 0;
+	info->flags & FLG_SPACE ? sign = ' ' : 0;
+	info->r.sign == 1 ? sign = '-' : 0;
+	sign && res ? res[0] = sign : 0;
+	sign ? i = 1 : 0;
+	j = sign ? 1 : 0;
+	while (info->width != -1 && j + (int)ft_strlen(arg) < info->width--)
+		res[i++] = '0';
+	res = ft_strcat(res, arg);
+	return (res);
+}
+
+static char		*flg_minus_case_f(t_format *info, char *arg, char *res)
+{
+	int		i;
+	char	sign;
+
+	i = 0;
+	info->flags & FLG_PLUS ? sign = '+' : 0;
+	info->flags & FLG_SPACE ? sign = ' ' : 0;
+	info->r.sign == 1 ? sign = '-' : 0;
+	sign && res ? res[0] = sign : 0;
+	res = ft_strcat(res, arg);
+	i = ft_strlen(res);
+	while (info->width != -1 && (int)ft_strlen(res) < info->width)
+	{
+		res[i++] = ' ';
+		info->width--;
+	}
+	return (res);
+}
+
+char		*process_flags_f(t_format *info, char *arg)
+{
+	int			len;
+	char		*res;
+
+	len = ft_strlen(arg);
+	if (info->flags & FLG_PLUS || info->flags & FLG_SPACE || info->r.sign ==\
+	'1')
+		len++;
+	len = info->width > len ? info->width : len;
+	res = NULL;
+	if (!(res = ft_strnew(len)))
+		put_errmsg_and_exit('m');
+	if (info->flags & FLG_MINUS)
+		res = flg_minus_case_f(info, arg, res);
+	else if (info->flags & FLG_ZERO)
+		res = flg_zero_case_f(info, arg, res);
+	else
+		res = flg_others_case_f(info, arg, res);
+	free(arg);
 	return (res);
 }
