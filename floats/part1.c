@@ -24,8 +24,6 @@ char			*add_zeros(char *s)
 	return (res);
 }
 
-
-
 int					set_len_big(t_bigint *elephant)
 {
 	int		i;
@@ -42,6 +40,18 @@ int					set_len_big(t_bigint *elephant)
 	return (len);
 }
 
+t_bigint			set_full()
+{
+	t_bigint	full_62;
+
+	initialize_big(&full_62);
+	full_62.bigint[0] = 427387904;
+	full_62.bigint[1] = 611686018;
+	full_62.bigint[2] = 4;
+	full_62.length = set_len_big(&full_62);
+	return (full_62);
+}
+
 t_bigint			create_bigint(int base, int exp)//возвращает число в степени
 // экспоненты
 {
@@ -53,31 +63,27 @@ t_bigint			create_bigint(int base, int exp)//возвращает число в 
 	set_power(&power, exp, base);
 	initialize_big(&one);
 	initialize_big(&two);
-	temp = TWO_62_POWER;
-	if (base == 10 || base == 5)
-		temp = (base == 10) ? TEN_18_POWER : FIVE_27_POWER;
 	if (power.full)
 	{
-		add_nbr(&one, temp);
+		one = set_full();
 		power.full--;
 	}
 	else if (!power.full && power.rest)
 	{
-		temp = pow(base, power.rest);
+		temp = ft_pow(base, power.rest);
 		add_nbr(&one, temp);
 		set_len_big(&one);
 		power.rest = 0;
 	}
 	while (power.full)
 	{
-		add_nbr(&two, temp);
+		two = set_full();
 		one = multiply(&one, &two);
-		initialize_big(&two);
 		power.full--;
 	}
 	if (power.rest)
 	{
-		temp = pow(base, power.rest);
+		temp = ft_pow(base, power.rest);
 		add_nbr(&two, temp);
 		one = multiply(&one, &two);
 		power.rest = 0;
@@ -114,7 +120,7 @@ t_bigint		get_integral(int exp, char *mantissa)
 	return (result);
 }
 
-int		get_power(char *str)
+int				get_power(char *str)
 {
 	int			i;
 	int			end;

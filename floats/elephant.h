@@ -3,12 +3,11 @@
 
 # include <stdio.h>
 # include <limits.h>
-# include <math.h>
 # include <stdlib.h>
 # include "printf.h"
 
 # define	BASE			1000000000//10^9 recommended
-# define	SIZE			100
+# define	SIZE			549
 # define	RADIX			"0123456789abcdef"
 # define	TWO_62_POWER	4611686018427387904
 # define	FIVE_27_POWER	7450580596923828125
@@ -47,8 +46,5 @@ t_bigint		create_bigint(int base, int exp);
 void			set_zero(t_bigint *nbr, int position);
 void			big_cat(t_bigint *dest, t_bigint *src);
 t_bigint		get_integral(int exp, char *mantissa);
-//int				process_mantissa(t_format *info);
 
-//void			initialize_kar(t_bigint *nbr, t_bigint *pt_1, t_bigint *pt_2);
-//void			karatsuba(t_bigint *res, t_bigint *one, t_bigint *two);
 #endif

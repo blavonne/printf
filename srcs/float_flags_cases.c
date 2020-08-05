@@ -74,11 +74,8 @@ void			ft_round_f(t_bigint *z, t_fractional *frac, t_format *info)
 		if (frac->bigint[0] >= 10 || !info->precision)
 		{
 			frac->bigint[0] >= 10 ? frac->bigint[0] -= 10 : 0;
-			if (z->bigint[0] % 2 || !z->bigint[0])
-			{
-				z->bigint[0]++;
-				normalize(z);
-			}
+			z->bigint[0]++;
+			normalize(z);
 		}
 		while (i < frac->length)
 			frac->bigint[i++] = 0;

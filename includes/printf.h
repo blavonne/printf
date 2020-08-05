@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 05:44:08 by blavonne          #+#    #+#             */
-/*   Updated: 2020/07/30 03:09:12 by null             ###   ########.fr       */
+/*   Created: 2020/07/23 03:40:05 by blavonne          #+#    #+#             */
+/*   Updated: 2020/07/24 03:58:29 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
 
-/* -----------------------------------------------------------------------------
- ** Secondary includes
- **---------------------------------------------------------------------------*/
+/*
+** Secondary includes
+*/
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include <stdio.h> //del
 # include <unistd.h>
 # include "elephant.h"
 # include "snake.h"
 
-/* -----------------------------------------------------------------------------
- ** Binary flags -+ 0#
- **---------------------------------------------------------------------------*/
+/*
+** Binary flags -+ 0#
+*/
 # define	FLG_NONE		0b00000000u
 # define	FLG_SPACE		0b00000001u
 # define	FLG_ZERO		0b00000010u
@@ -33,43 +33,43 @@
 # define	FLG_NBRSIGN		0b00001000u
 # define	FLG_PLUS		0b00010000u
 
-/* -----------------------------------------------------------------------------
- ** RADIX for itoa
- **---------------------------------------------------------------------------*/
+/*
+** RADIX for itoa
+*/
 # define	RADIX			"0123456789abcdef"
 
-/* -----------------------------------------------------------------------------
- ** Numeral systems
- **---------------------------------------------------------------------------*/
+/*
+** Numeral systems
+*/
 # define	DECIMAL			10
 # define	OCTAL			8
 # define	HEX				16
 
-/* -----------------------------------------------------------------------------
- ** Length of word, which means (null)
- **---------------------------------------------------------------------------*/
+/*
+** Length of word, which means (null)
+*/
 # define	STR_NULL_LEN 	6
 
-/* -----------------------------------------------------------------------------
- ** This value means info.precision or info.width is star
- **---------------------------------------------------------------------------*/
+/*
+** This value means info.precision or info.width is star
+*/
 # define	READ_ARG		-2
 
-/* -----------------------------------------------------------------------------
- ** This value means exponent is 11...11
- **---------------------------------------------------------------------------*/
+/*
+** This value means exponent is 11...11
+*/
 # define	INF				16384
 
-/* -----------------------------------------------------------------------------
- ** Definitions
- **---------------------------------------------------------------------------*/
+/*
+** Definitions
+*/
 
 typedef union				u_integer
 {
 	int						i;
+	long int				l;
+	long long int			ll;
 	unsigned int			u;
-	long					l;
-	long long				ll;
 	unsigned long int		lu;
 	unsigned long long int	llu;
 }							t_integer;
@@ -92,9 +92,9 @@ typedef struct				s_format
 	t_float					r;
 }							t_format;
 
-/* -----------------------------------------------------------------------------
- ** libft functions
- **---------------------------------------------------------------------------*/
+/*
+** libft functions
+*/
 void						ft_putchar(char c);
 void						ft_bzero(void *s, size_t n);
 void						*ft_memset(void *b, int c, size_t len);
@@ -112,10 +112,11 @@ int							ft_isdigit(int c);
 char						*ft_strcat(char *s1, const char *s2);
 char						*ft_strcpy(char *dst, const char *src);
 char						*ft_strjoin(char const *s1, char const *s2);
+double						ft_pow(double basis, int exponent);
 
-/* -----------------------------------------------------------------------------
- ** itoa and symbols count functions
- **---------------------------------------------------------------------------*/
+/*
+** itoa and symbols count functions
+*/
 char						*itoa_i(int decimal);
 char						*itoa_u(unsigned int decimal, int base);
 char						*itoa_l(long int decimal);
@@ -130,15 +131,15 @@ int							nbr_len_uint_l(t_format *info, int base);
 int							nbr_len_int_ll(t_format *info);
 int							nbr_len_uint_ll(t_format *info, int base);
 
-/* -----------------------------------------------------------------------------
- ** PRINTF
- **---------------------------------------------------------------------------*/
+/*
+** PRINTF
+*/
 int							ft_printf(char *format, ...);
 void						put_errmsg_and_exit(char type);
 
-/* -----------------------------------------------------------------------------
- ** Parser
- **---------------------------------------------------------------------------*/
+/*
+** Parser
+*/
 void						parse_text(char *format, int *i, int *count);
 void						parse_flags(char *format, int *i, t_format *info);
 void						set_flag(char c, t_format *info);
@@ -149,9 +150,9 @@ int							parse_type(char *format, int *i, t_format *info);
 int							check_info(t_format *info, va_list *arg);
 int							push_to_processor(t_format *info, va_list *arg);
 
-/* -----------------------------------------------------------------------------
- ** Processor - integers
- **---------------------------------------------------------------------------*/
+/*
+** Processor - integers
+*/
 int							integer(t_format *info, va_list *arg);
 int							sign(t_format *info, char option);
 int							print_arg(t_format *info);
@@ -159,22 +160,22 @@ int							flg_minus_case(t_format *info);
 int							flg_zero_case(t_format *info);
 int							flg_others_case(t_format *info);
 
-/* -----------------------------------------------------------------------------
- ** Processor - chars
- **---------------------------------------------------------------------------*/
+/*
+** Processor - chars
+*/
 int							chars(t_format *info, va_list *arg);
 int							char_case(t_format *info, unsigned char arg);
 int							string_case(t_format *info, char *arg);
 
-/* -----------------------------------------------------------------------------
- ** Processor - others
- **---------------------------------------------------------------------------*/
+/*
+** Processor - others
+*/
 int							percent(t_format *info);
 int							pointer(t_format *info, va_list *arg);
 
-/* -----------------------------------------------------------------------------
- ** Processor - floats
- **---------------------------------------------------------------------------*/
+/*
+** Processor - floats
+*/
 int							floats(t_format *info, va_list *arg);
 t_float						initialize_float(long double arg);
 char						*get_arg_f(t_format *info);

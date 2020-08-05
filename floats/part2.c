@@ -18,25 +18,22 @@ void			set_power(t_power *tmp, int exp, int base)
 void			normalize(t_bigint *elephant)
 {
 	int			i;
+	int			corrector;
+	int			j;
 
 	i = 0;
 	elephant->length = set_len_big(elephant);
 	while (i < elephant->length)
 	{
-		if (elephant->bigint[i] >= BASE && i < SIZE - 2)
+		if (elephant->bigint[i] >= BASE && i < SIZE)
 		{
-			while (elephant->bigint[i] >= BASE)
+			corrector = (int)(elephant->bigint[i] / BASE);
+			elephant->bigint[i] = elephant->bigint[i] % BASE;
+			j = i + 1;
+			while (corrector && j < SIZE)
 			{
-				elephant->bigint[i] -= BASE;
-				elephant->bigint[i + 1]++;
-			}
-		}
-		else if (elephant->bigint[i] < 0 && i < SIZE - 2)
-		{
-			while (elephant->bigint[i] < 0 && elephant->bigint[i + 1])
-			{
-				elephant->bigint[i] += BASE;
-				elephant->bigint[i + 1]--;
+				elephant->bigint[j++] += corrector % BASE;
+				corrector /= BASE;
 			}
 		}
 		i++;

@@ -15,7 +15,6 @@
 int		floats(t_format *info, va_list *arg)
 {
 	int			count;
-	double		d;
 	long double	ld;
 	char		*res;
 
@@ -25,13 +24,9 @@ int		floats(t_format *info, va_list *arg)
 	if (info->length[0] && info->length[0] == 'L')
 		ld = va_arg(*arg, long double);
 	else if (!info->length[0])
-	{
-		d = va_arg(*arg, double);
-		ld = d;
-	}
+		ld = (long double)va_arg(*arg, double);
 	info->r = initialize_float(ld);
-	if (info->precision < 0)
-		info->precision = 6;
+	info->precision = info->precision < 0 ? 6 : info->precision;
 	res = get_arg_f(info);
 	if (res)
 	{

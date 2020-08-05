@@ -20,7 +20,7 @@ int					set_len_frac(t_fractional *snake)
 
 	i = 0;
 	len = 0;
-	while (i < SIZE)
+	while (i < TAIL_SIZE)
 	{
 		if (snake->bigint[i])
 			len = i + 1;
@@ -76,7 +76,6 @@ t_fractional		addition_frac(t_fractional *one, t_fractional *two)
 	i = 0;
 	one->length = set_len_frac(one);
 	two->length = set_len_frac(two);
-	initialize_frac(&left);
 	left = (one->length > two->length) ? *one : *two;
 	right = (one->length <= two->length) ? *one : *two;
 	while (i < right.length)
