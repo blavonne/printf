@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "printf.h"
 
 void	put_errmsg_and_exit(char type)
 {

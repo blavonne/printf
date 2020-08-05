@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "printf.h"
 
 char	*ft_strcat(char *s1, const char *s2)
 {

@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "printf.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
