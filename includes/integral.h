@@ -9,7 +9,7 @@
 /*
 ** Count of digits in arr and size of integral bigint
 */
-# define	BASE			1000000000//10^9 recommended
+# define	BASE			1000000000
 # define	SIZE			549
 # define	COUNT_DIGITS	9
 
