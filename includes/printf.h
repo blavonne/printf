@@ -63,7 +63,6 @@
 /*
 ** Definitions
 */
-
 typedef union				u_integer
 {
 	int						i;
