@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   float_flags_cases.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/06 17:58:47 by blavonne          #+#    #+#             */
+/*   Updated: 2020/08/06 17:58:48 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 static char		*flg_others_case_f(t_format *info, char *arg, char *res)
@@ -8,6 +20,7 @@ static char		*flg_others_case_f(t_format *info, char *arg, char *res)
 
 	i = 0;
 	j = 0;
+	sign = 0;
 	info->flags & FLG_PLUS ? sign = '+' : 0;
 	info->flags & FLG_SPACE ? sign = ' ' : 0;
 	info->r.sign == 1 ? sign = '-' : 0;
@@ -27,11 +40,12 @@ static char		*flg_zero_case_f(t_format *info, char *arg, char *res)
 
 	i = 0;
 	j = 0;
+	sign = 0;
 	info->flags & FLG_PLUS ? sign = '+' : 0;
 	info->flags & FLG_SPACE ? sign = ' ' : 0;
 	info->r.sign == 1 ? sign = '-' : 0;
 	sign && res ? res[0] = sign : 0;
-	sign ? i = 1 : 0;
+	sign ? (i = 1) : 0;
 	j = sign ? 1 : 0;
 	while (info->width != -1 && j + (int)ft_strlen(arg) < info->width--)
 		res[i++] = '0';
@@ -45,6 +59,7 @@ static char		*flg_minus_case_f(t_format *info, char *arg, char *res)
 	char	sign;
 
 	i = 0;
+	sign = 0;
 	info->flags & FLG_PLUS ? sign = '+' : 0;
 	info->flags & FLG_SPACE ? sign = ' ' : 0;
 	info->r.sign == 1 ? sign = '-' : 0;
