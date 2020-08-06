@@ -23,6 +23,7 @@ int		nbr_len_int_l(t_format *info)
 	if (!(res = itoa_l(temp)))
 		put_errmsg_and_exit('m');
 	len = (int)ft_strlen(res);
+	free(res);
 	return (len);
 }
 
@@ -37,5 +38,6 @@ int		nbr_len_uint_l(t_format *info, int base)
 	if (!(res = itoa_lu(temp, base)))
 		put_errmsg_and_exit('m');
 	len = (int)ft_strlen(res);
+	free(res);
 	return (len);
 }
