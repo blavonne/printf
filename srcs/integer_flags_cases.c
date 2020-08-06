@@ -67,9 +67,6 @@ int		flg_others_case(t_format *info)
 		ft_putchar('0');
 		count++;
 	}
-	if (!info->precision && !info->z.llu && info->width == -1 && \
-	info->specifier != 'o')
-		return (0);
 	count = i ? count + (i - 1) + sign(info, 's') : count + i +\
 	sign(info, 's');
 	print_arg(info);
