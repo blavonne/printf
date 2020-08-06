@@ -73,7 +73,7 @@ t_fractional		get_fractional(char *mantissa, int exp)
 	mantissa = (exp < 0) ? &mantissa[0] : &mantissa[exp + 1];
 	len = (exp < 0) ? ft_abs(exp) + get_mant_len(mantissa) :\
 	get_mant_len(mantissa);
-	while (len--)
+	while (len-- && *mantissa)
 	{
 		if (*mantissa++ == '1')
 		{
