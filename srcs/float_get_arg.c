@@ -26,7 +26,7 @@ void			ft_round_f(t_integral *z, t_fractional *frac, t_format *info)
 		}
 		if ((!info->precision && (frac->bigint[0] > 5 || (frac->bigint[0]\
 		== 5 && frac->length > 1))) || frac->bigint[0] >= 10 || (z->length &&\
-		frac->bigint[0] == 5))
+		frac->bigint[0] == 5 && z->bigint[0] % 2))
 		{
 			frac->bigint[0] >= 10 ? frac->bigint[0] -= 10 : 0;
 			z->bigint[0]++;
@@ -46,6 +46,9 @@ char			*get_arg_f(t_format *info)
 	char			*r;
 	char			*res;
 
+	res = NULL;
+	z = NULL;
+	r = NULL;
 	if ((res = check_inf_nan(info)))
 		return (res);
 	integral = get_integral(info->r.exponent, info->r.mantissa);
