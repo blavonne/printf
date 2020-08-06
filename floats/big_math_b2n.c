@@ -12,7 +12,7 @@
 
 #include "integral.h"
 
-t_integral 			add_nbr(t_integral *elephant, long long fly)
+t_integral			add_nbr(t_integral *elephant, long long fly)
 {
 	elephant->bigint[0] += fly;
 	normalize_integral(elephant);
@@ -34,7 +34,7 @@ t_integral			multiply_by_nbr(t_integral *elephant, long long fly)
 	return (*elephant);
 }
 
-t_integral 			division_by_nbr(t_integral *res, int divider)
+t_integral			division_by_nbr(t_integral *res, int divider)
 {
 	int		i;
 

@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include "fractional.h"
 # include "integral.h"
+# include "xray.h"
 
 /*
 ** Binary flags -+ 0#

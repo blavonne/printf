@@ -35,7 +35,7 @@ static char			*add_zeros(char *s, int count)
 	return (res);
 }
 
-static char		*zero_integral()
+static char			*zero_integral(void)
 {
 	char	*buf;
 
@@ -45,7 +45,7 @@ static char		*zero_integral()
 	return (buf);
 }
 
-char			*integral_to_str(t_integral *one)
+char				*integral_to_str(t_integral *one)
 {
 	int			i;
 	char		*buf;
