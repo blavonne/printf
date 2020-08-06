@@ -74,7 +74,7 @@ static char		*flg_minus_case_f(t_format *info, char *arg, char *res)
 	return (res);
 }
 
-static void			inf_nan_case(t_format *info)
+static void		inf_nan_case(t_format *info)
 {
 	if (info->flags & FLG_ZERO)
 		info->flags &= ~FLG_ZERO;
