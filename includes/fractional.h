@@ -22,7 +22,7 @@
 ** Size of fractional bigint
 */
 
-# define TAIL_SIZE		1000
+# define TAIL_SIZE		1500
 
 /*
 ** Definitions
