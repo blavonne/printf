@@ -22,7 +22,6 @@ SRC =	$(FLTDIR)big_math_b2b.c\
 		$(LIBFTDIR)ft_itoa_iu.c\
 		$(LIBFTDIR)ft_itoa_lu.c\
 		$(LIBFTDIR)ft_itoa_llu.c\
-		$(LIBFTDIR)ft_memcpy.c\
 		$(LIBFTDIR)ft_memset.c\
 		$(LIBFTDIR)ft_pow.c\
 		$(LIBFTDIR)ft_putchar.c\
