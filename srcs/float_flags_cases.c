@@ -66,11 +66,8 @@ static char		*flg_minus_case_f(t_format *info, char *arg, char *res)
 	sign && res ? res[0] = sign : 0;
 	res = ft_strcat(res, arg);
 	i = ft_strlen(res);
-	while (info->width != -1 && (int)ft_strlen(res) < info->width)
-	{
+	while (info->width != -1 && i < info->width)
 		res[i++] = ' ';
-		info->width--;
-	}
 	return (res);
 }
 
