@@ -74,7 +74,13 @@ static char		*flg_minus_case_f(t_format *info, char *arg, char *res)
 	return (res);
 }
 
-char		*process_flags_f(t_format *info, char *arg)
+static void			inf_nan_case(t_format *info)
+{
+	if (info->flags & FLG_ZERO)
+		info->flags &= ~FLG_ZERO;
+}
+
+char			*process_flags_f(t_format *info, char *arg)
 {
 	int			len;
 	char		*res;
@@ -87,6 +93,8 @@ char		*process_flags_f(t_format *info, char *arg)
 	res = NULL;
 	if (!(res = ft_strnew(len)))
 		put_errmsg_and_exit('m');
+	if (arg && (arg[0] == 'i' || arg[0] == 'n'))
+		inf_nan_case(info);
 	if (info->flags & FLG_MINUS)
 		res = flg_minus_case_f(info, arg, res);
 	else if (info->flags & FLG_ZERO)

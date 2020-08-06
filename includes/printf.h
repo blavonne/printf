@@ -18,7 +18,6 @@
 */
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h> //del
 # include <unistd.h>
 # include "fractional.h"
 # include "integral.h"
@@ -26,39 +25,39 @@
 /*
 ** Binary flags -+ 0#
 */
-# define	FLG_NONE		0b00000000u
-# define	FLG_SPACE		0b00000001u
-# define	FLG_ZERO		0b00000010u
-# define	FLG_MINUS		0b00000100u
-# define	FLG_NBRSIGN		0b00001000u
-# define	FLG_PLUS		0b00010000u
+# define FLG_NONE		0b00000000u
+# define FLG_SPACE		0b00000001u
+# define FLG_ZERO		0b00000010u
+# define FLG_MINUS		0b00000100u
+# define FLG_NBRSIGN		0b00001000u
+# define FLG_PLUS		0b00010000u
 
 /*
 ** RADIX for itoa
 */
-# define	RADIX			"0123456789abcdef"
+# define RADIX			"0123456789abcdef"
 
 /*
 ** Numeral systems
 */
-# define	DECIMAL			10
-# define	OCTAL			8
-# define	HEX				16
+# define DECIMAL			10
+# define OCTAL			8
+# define HEX				16
 
 /*
 ** Length of word, which means (null)
 */
-# define	STR_NULL_LEN 	6
+# define STR_NULL_LEN 	6
 
 /*
 ** This value means info.precision or info.width is star
 */
-# define	READ_ARG		-2
+# define READ_ARG		-2
 
 /*
 ** This value means exponent is 11...11
 */
-# define	INF				16384
+# define INF				16384
 
 /*
 ** Definitions
