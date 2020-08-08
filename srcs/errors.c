@@ -19,4 +19,8 @@ void	put_errmsg_and_exit(char type)
 		ft_putstr_fd("Error: not enough memory to process data.\n", 2);
 		exit(1);
 	}
+	if (type == 'u')
+	{
+		ft_putstr_fd("Error: unknown conversion type.\n", 2);
+	}
 }

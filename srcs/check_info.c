@@ -66,6 +66,8 @@ int				check_info(t_format *info, va_list *arg)
 		info->flags = info->flags & (unsigned char)(~FLG_ZERO);
 	check_flags_and_specifier(info);
 	check_length_and_specifier(info);
+	if (!ft_strchr("diouxXfcsp", info->specifier))
+		put_errmsg_and_exit('u');
 	return (0);
 }
 
