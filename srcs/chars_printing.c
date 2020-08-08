@@ -60,7 +60,9 @@ static int	str_len(t_format *info, char *arg)
 int			string_case(t_format *info, char *arg)
 {
 	int		count;
+	char	c;
 
+	c = (info->flags & FLG_ZERO) ? '0' : ' ';
 	count = str_len(info, arg);
 	if (info->flags & FLG_MINUS)
 	{
@@ -71,7 +73,7 @@ int			string_case(t_format *info, char *arg)
 	else
 	{
 		while (count++ < info->width)
-			ft_putchar(' ');
+			ft_putchar(c);
 		print_string(info, arg);
 	}
 	count--;

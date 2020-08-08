@@ -77,6 +77,8 @@ static void		inf_nan_case(t_format *info, char *arg)
 		info->flags &= ~FLG_ZERO;
 	if (arg[0] == 'n' && info->flags)
 		info->flags = info->flags & FLG_MINUS ? FLG_MINUS : FLG_NONE;
+	if (arg[0] == 'n')
+		info->r.sign = 0;
 }
 
 char			*process_flags_f(t_format *info, char *arg)
