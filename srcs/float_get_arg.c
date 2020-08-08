@@ -12,29 +12,51 @@
 
 #include "printf.h"
 
-void			ft_round_f(t_integral *z, t_fractional *frac, t_format *info)
+static void			ft_round_five(t_integral *z, t_fractional *frac, t_format\
+*info)
+{
+	int		i;
+
+	i = info->precision;
+	if (i && frac->bigint[i] == 5)
+	{
+		if (i != frac->length - 1 || frac->bigint[i - 1] % 2)
+			frac->bigint[i - 1]++;
+		normalize_frac(frac);
+	}
+	else if (!i && frac->bigint[i] == 5)
+	{
+		z->bigint[i] % 2 ? z->bigint[i]++ : 0;
+		normalize_integral(z);
+	}
+}
+
+static void			ft_round_f(t_integral *z, t_fractional *frac, t_format\
+*info)
 {
 	int		i;
 
 	i = info->precision;
 	if (info->precision < frac->length && frac->bigint[info->precision] >= 5)
 	{
-		if (info->precision)
+		if (i && frac->bigint[i] > 5)
 		{
-			frac->bigint[info->precision - 1]++;
+			frac->bigint[i - 1]++;
 			normalize_frac(frac);
 		}
-		if ((!info->precision && (frac->bigint[0] > 5 || (frac->bigint[0]\
-		== 5 && frac->length > 1))) || frac->bigint[0] >= 10 || (z->length &&\
-		frac->bigint[0] == 5 && z->bigint[0] % 2))
+		else if (!i && frac->bigint[i] > 5)
 		{
-			frac->bigint[0] >= 10 ? frac->bigint[0] -= 10 : 0;
-			z->bigint[0]++;
+			z->bigint[i]++;
 			normalize_integral(z);
 		}
-		while (i < frac->length)
-			frac->bigint[i++] = 0;
-		frac->length = set_len_frac(frac);
+		else if (frac->bigint[i] == 5)
+			ft_round_five(z, frac, info);
+		if (frac->bigint[0] >= 10)
+		{
+			z->bigint[0]++;
+			frac->bigint[0] -= 10;
+			normalize_integral(z);
+		}
 	}
 }
 
