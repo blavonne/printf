@@ -73,24 +73,13 @@ fclean: clean
 	rm -rf $(NAME)
 re: fclean all
 
-exe: $(OS)
-	gcc -c main.c -I $(INCLUDES)
-	gcc $(OS) main.o -o $(NAME_E) -I $(INCLUDES)
+exe: $(NAME)
+	gcc -c main.c
+	gcc $(OS) main.o -o $(NAME_E) -L -lfrprintf
 eclean: clean
 	rm -rf main.o
 efclean: eclean
 	rm -rf $(NAME_E)
 ere: efclean exe
 
-cp: rm
-	cp -rf ./libft ./git
-	cp -rf ./srcs ./git
-	cp -rf ./includes ./git
-	cp Makefile ./git
-rm:
-	rm -rf ./git/includes/*
-	rm -rf ./git/srcs/*
-	rm -rf ./git/libft/*
-pft:
-	bash ./pft/test
 .PHONY: all clean fclean re val cp exe
