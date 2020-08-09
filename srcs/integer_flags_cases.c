@@ -50,25 +50,47 @@ int		flg_zero_case(t_format *info)
 
 int		flg_others_case(t_format *info)
 {
-	int		i;
+//	int		i;
+//	int		count;
+//
+//	i = 0;
+//	count = (!info->z.llu && !info->precision) ? 0 : nbr_len(info);
+//	while (info->width != -1 && info->precision >= count && info->width >\
+//	info->precision + sign(info, 's') + i++)
+//		ft_putchar(' ');
+//	while (info->width != -1 && info->precision < count && info->width >\
+//	count + sign(info, 's') + i++)
+//		ft_putchar(' ');
+//	sign(info, 'p');
+//	while (info->precision != -1 && count < info->precision)
+//	{
+//		ft_putchar('0');
+//		count++;
+//	}
+//	count = i ? count + (i - 1) + sign(info, 's') : count + i +\
+//	sign(info, 's');
+//	print_arg(info);
+//	return (count);
 	int		count;
 
-	i = 0;
-	count = (!info->z.llu && !info->precision) ? 0 : nbr_len(info);
-	while (info->width != -1 && info->precision >= count && info->width >\
-	info->precision + sign(info, 's') + i++)
-		ft_putchar(' ');
-	while (info->width != -1 && info->precision < count && info->width >\
-	count + sign(info, 's') + i++)
-		ft_putchar(' ');
-	sign(info, 'p');
-	while (info->precision != -1 && count < info->precision)
+	if (!info->z.llu && !info->precision)
+		count = 0;
+	else if (info->precision > nbr_len(info) + sign(info, 's'))
+		count = info->precision;
+	else
+		count = nbr_len(info) + sign(info, 's');
+	while (info->width != -1 && count < info->width)
 	{
-		ft_putchar('0');
+		ft_putchar(' ');
 		count++;
 	}
-	count = i ? count + (i - 1) + sign(info, 's') : count + i +\
-	sign(info, 's');
+	sign(info, 'p');
+	while (info->precision != -1 && info->precision > nbr_len(info) + sign
+	(info, 's'))
+	{
+		ft_putchar('0');
+		info->precision--;
+	}
 	print_arg(info);
 	return (count);
 }

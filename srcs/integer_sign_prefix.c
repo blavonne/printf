@@ -43,12 +43,12 @@ static int	prefix_o(t_format *info, char option)
 		if (!info->z.llu && info->precision)
 			return (0);
 		ft_putchar('0');
-		if (!info->length[0] || info->length[0] == 'h')
-			info->precision = info->precision ? info->precision - 1 : 0;
-		if (info->length[0] == 'l' && !info->length[1])
-			info->precision = info->precision ? info->precision - 1 : 0;
-		if (info->length[0] == 'l' && info->length[1])
-			info->precision = info->precision ? info->precision - 1 : 0;
+//		if (!info->length[0] || info->length[0] == 'h')
+//			info->precision = info->precision ? info->precision - 1 : 0;
+//		if (info->length[0] == 'l' && !info->length[1])
+//			info->precision = info->precision ? info->precision - 1 : 0;
+//		if (info->length[0] == 'l' && info->length[1])
+//			info->precision = info->precision ? info->precision - 1 : 0;
 	}
 	else if (option == 's')
 	{
