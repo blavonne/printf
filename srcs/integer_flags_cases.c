@@ -18,13 +18,12 @@ int		flg_minus_case(t_format *info)
 
 	count = (!info->z.llu && !info->precision) ? 0 : nbr_len(info);
 	sign(info, 'p');
-	sign(info, 's') ? count++ : 0;
 	while (info->precision != -1 && count < info->precision)
 	{
 		ft_putchar('0');
 		count++;
 	}
-//	count += sign(info, 's');
+	count += sign(info, 's');
 	print_arg(info);
 	while (info->width != -1 && count < info->width)
 	{
@@ -75,7 +74,7 @@ int		flg_others_case(t_format *info)
 	int		count;
 
 	if (!info->z.llu && !info->precision)
-		count = 0 + sign(info, 's');
+		count = 0;
 	else if (info->precision > nbr_len(info) + sign(info, 's'))
 		count = info->precision;
 	else
