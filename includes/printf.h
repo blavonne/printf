@@ -30,7 +30,7 @@
 # define FLG_SPACE		0b00000001u
 # define FLG_ZERO		0b00000010u
 # define FLG_MINUS		0b00000100u
-# define FLG_NBRSIGN		0b00001000u
+# define FLG_NBRSIGN	0b00001000u
 # define FLG_PLUS		0b00010000u
 
 /*
