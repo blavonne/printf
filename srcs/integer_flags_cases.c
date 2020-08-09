@@ -55,8 +55,10 @@ int		flg_others_case(t_format *info)
 
 	i = 0;
 	count = (!info->z.llu && !info->precision) ? 0 : nbr_len(info);
-	while (info->width != -1 && info->precision >= count && info->width >\
-	info->precision + sign(info, 's') + i++)
+	while (info->width != -1 && ((info->specifier != 'o' && info->precision >=\
+	count && info->width > info->precision + sign(info, 's') + i++) ||\
+	(info->specifier == 'o' && info->precision >=\
+	count && info->width >= info->precision + sign(info, 's') + i++)))
 		ft_putchar(' ');
 	while (info->width != -1 && info->precision < count && info->width >\
 	count + sign(info, 's') + i++)

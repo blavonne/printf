@@ -55,9 +55,6 @@ static int	prefix_o(t_format *info, char option)
 //		return (0);
 		if (!info->z.llu && info->precision)
 			return (0);
-		else if (info->flags & FLG_NBRSIGN && info->precision != -1 &&\
-		info->precision)
-			return (0);
 		else
 			return (1);
 	}
