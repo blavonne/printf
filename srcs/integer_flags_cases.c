@@ -75,7 +75,7 @@ int		flg_others_case(t_format *info)
 	int		count;
 
 	if (!info->z.llu && !info->precision)
-		count = 0;
+		count = 0 + sign(info, 's');
 	else if (info->precision > nbr_len(info) + sign(info, 's'))
 		count = info->precision;
 	else
