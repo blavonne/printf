@@ -54,6 +54,9 @@ int		flg_others_case(t_format *info)
 	int		count;
 
 	i = 0;
+	if (info->specifier == 'o' && info->flags & FLG_NBRSIGN && info->precision\
+	> nbr_len(info))
+		info->flags &= ~FLG_NBRSIGN;
 	count = (!info->z.llu && !info->precision) ? 0 : nbr_len(info);
 	while (info->width != -1 && info->precision >= count && info->width >\
 	info->precision + sign(info, 's') + i++)
