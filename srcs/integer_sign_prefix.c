@@ -52,7 +52,7 @@ static int	prefix_o(t_format *info, char option)
 	}
 	else if (option == 's')
 	{
-		return (0);
+//		return (0);
 		if (!info->z.llu && info->precision)
 			return (0);
 		else
