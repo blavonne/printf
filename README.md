@@ -8,3 +8,5 @@ Able to manage %%
 Able to manage the flags #0-+ and space  
 Able to manage the minimum field-width  
 Able to manage the precision  
+
+[Arbitrary-precision arithmetic guide (russian)](https://youtu.be/lch7xcrCIlQ)
